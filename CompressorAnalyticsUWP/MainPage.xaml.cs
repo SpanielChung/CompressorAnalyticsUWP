@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,25 @@ namespace CompressorAnalyticsUWP
         public MainPage()
         {
             this.InitializeComponent();
+
+            SerialHelper serialHelper = new SerialHelper(this);
+
+            // connect to arduino and start listening to data
+            serialHelper.ConnectToArduino();
+
+        }
+
+        public void updateArduinoID(string msg)
+        {
+            this.arduinoSerialId.Text = msg;
+        }
+        public void updateArduinoStatus(string msg)
+        {
+            this.arduinoSerialStatus.Text = msg;
+        }
+        public void updateArduinoData(string msg)
+        {
+            this.arduinoSerialData.Text = msg;
         }
     }
 }

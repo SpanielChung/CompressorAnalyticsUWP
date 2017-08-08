@@ -8,6 +8,47 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="pageTitle" Text="Residential Mechanical Systems Monitoring Platform" Style="{StaticResource HeaderTextBlockStyle}" 
+                        IsHitTestVisible="false" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,0,0"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Text="Arduino Serial ID" Width="300" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Name="arduinoSerialId" Width="300"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Text="Status" Width="300"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Name="arduinoSerialStatus" Width="300"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Text="Data" Width="300" Height="80"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0" Width="300">
+            <TextBox Name="arduinoSerialData" Width="300" Height="80"/>
+
+        </StackPanel>
     </Grid>
 </Page>

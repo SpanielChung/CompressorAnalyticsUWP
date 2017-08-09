@@ -105,7 +105,7 @@ namespace CompressorAnalyticsUWP
             catch (TaskCanceledException tce)
             {
                 CloseDevice();
-                p.updateArduinoData("Reading task was cancelled, closing device and cleaning up");
+                p.updateArduinoData("Reading task was cancelled, closing device and cleaning up. Error: "+tce.Message);
             }
             catch (Exception ex)
             {
@@ -144,6 +144,7 @@ namespace CompressorAnalyticsUWP
                 if (bytesRead > 0)
                 {
                     p.updateArduinoData(dataReaderObject.ReadString(bytesRead));
+                    //CloudData data = 
                     //data d = JsonConvert.DeserializeObject<data>(rcvdText.Text);
                     //d.timestamp = DateTime.Now;
                     //string msg = JsonConvert.SerializeObject(d);

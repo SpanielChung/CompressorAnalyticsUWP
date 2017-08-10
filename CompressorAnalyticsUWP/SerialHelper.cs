@@ -8,6 +8,7 @@ using Windows.Devices.SerialCommunication;
 using Windows.Devices.Enumeration;
 using Windows.Storage.Streams;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace CompressorAnalyticsUWP
 {
@@ -28,6 +29,7 @@ namespace CompressorAnalyticsUWP
 
         public string deviceID;
         MainPage p;
+
 
         public SerialHelper(MainPage p)
         {
@@ -143,12 +145,12 @@ namespace CompressorAnalyticsUWP
                 UInt32 bytesRead = await loadAsyncTask;
                 if (bytesRead > 0)
                 {
-                    p.updateArduinoData(dataReaderObject.ReadString(bytesRead));
-                    //CloudData data = 
-                    //data d = JsonConvert.DeserializeObject<data>(rcvdText.Text);
-                    //d.timestamp = DateTime.Now;
-                    //string msg = JsonConvert.SerializeObject(d);
-                    //SendDeviceToCloudMessagesAsync(msg);
+                    string message = dataReaderObject.ReadString(bytesRead);
+                    p.updateArduinoData(message);
+                    SystemData data = JsonConvert.DeserializeObject<SystemData>(message);
+                    data.timeStamp = DateTime.Now;
+                    message = JsonConvert.SerializeObject(data);
+                    CloudHelper.SendDeviceToCloudMessagesAsync(message);
                 }
             }
 

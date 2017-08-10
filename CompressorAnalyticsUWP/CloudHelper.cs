@@ -7,10 +7,10 @@ using Microsoft.Azure.Devices.Client;
 
 namespace CompressorAnalyticsUWP
 {
-    class CloudHelper
+    static class CloudHelper
     {
 
-        async void SendDeviceToCloudMessagesAsync(string msg)
+        public static async void SendDeviceToCloudMessagesAsync(string msg)
         {
 
             string iotHubUri = "BTSIoTExample.azure-devices.net"; // ! put in value !

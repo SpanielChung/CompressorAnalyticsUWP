@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CompressorAnalyticsWeb.Models;
 
-
-
 namespace CompressorAnalyticsWeb.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

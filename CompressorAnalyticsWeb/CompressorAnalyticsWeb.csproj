@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <UserSecretsId>aspnet-CompressorAnalyticsWeb-78eecaa5-5996-44ed-9449-47ef1e6820b7</UserSecretsId>
+    <UserSecretsId>aspnet-CompressorAnalyticsWeb-98f013fc-90f1-438e-88b2-bfac0fb94c07</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

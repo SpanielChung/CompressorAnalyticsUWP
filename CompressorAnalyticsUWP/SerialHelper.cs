@@ -51,14 +51,14 @@ namespace CompressorAnalyticsUWP
                 }
                 // update device id
                 deviceID = listOfDevices.Where(x => x.Name == arduinoSerialName).Select(x => x.Id).FirstOrDefault();
-                p.updateArduinoID(deviceID);
+                p.addLineToConsole("Serial Device ID: "+deviceID);
 
                 // get serial port and confirm on screen
                 serialPort = await SerialDevice.FromIdAsync(deviceID);
 
 
                 if (serialPort == null) return;
-                p.updateArduinoStatus("Status OK");
+                p.addLineToConsole("Serial Status OK");
 
                 // Configure serial settings
                 serialPort.WriteTimeout = TimeSpan.FromMilliseconds(1000);
@@ -72,6 +72,7 @@ namespace CompressorAnalyticsUWP
                 // Create cancellation token object to close I/O operations when closing the device
                 ReadCancellationTokenSource = new CancellationTokenSource();
 
+                p.addLineToConsole("Listening for serial data");
                 Listen();
 
                 return;
@@ -79,7 +80,7 @@ namespace CompressorAnalyticsUWP
 
             catch (Exception ex)
             {
-                p.updateArduinoStatus(ex.Message);
+                p.addLineToConsole(ex.Message);
                 return;
             }
 
@@ -107,11 +108,11 @@ namespace CompressorAnalyticsUWP
             catch (TaskCanceledException tce)
             {
                 CloseDevice();
-                p.updateArduinoData("Reading task was cancelled, closing device and cleaning up. Error: "+tce.Message);
+                p.updateDataLog("Reading task was cancelled, closing device and cleaning up. Error: "+tce.Message);
             }
             catch (Exception ex)
             {
-                p.updateArduinoData(ex.Message);
+                p.updateDataLog(ex.Message);
             }
             finally
             {
@@ -146,10 +147,14 @@ namespace CompressorAnalyticsUWP
                 if (bytesRead > 0)
                 {
                     string message = dataReaderObject.ReadString(bytesRead);
-                    p.updateArduinoData(message);
-                    SystemData data = JsonConvert.DeserializeObject<SystemData>(message);
-                    data.timeStamp = DateTime.Now;
-                    message = JsonConvert.SerializeObject(data);
+                    p.updateDataLog(message);
+                    dynamic d = JsonConvert.DeserializeObject(message);
+                    d.timeStamp = DateTime.Now;
+                    message = JsonConvert.SerializeObject(d);
+                    //SystemData data = JsonConvert.DeserializeObject<SystemData>(message);
+                    //data.timeStamp = DateTime.Now;
+                    //message = JsonConvert.SerializeObject(data);
+                    p.updateDataLog(message);
                     CloudHelper.SendDeviceToCloudMessagesAsync(message);
                 }
             }

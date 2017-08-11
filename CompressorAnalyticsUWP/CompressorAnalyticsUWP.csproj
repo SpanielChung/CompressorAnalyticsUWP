@@ -96,10 +96,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CloudHelper.cs" />
+    <Compile Include="DeviceTwin.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ArduinoSimulator.cs" />
     <Compile Include="SerialHelper.cs" />
   </ItemGroup>
   <ItemGroup>
